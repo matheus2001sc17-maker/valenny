@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valenny | Em Breve</title>
+  <meta name="description" content="Valenny: moda com elegância, autenticidade e estilo. Em breve.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --claro: #ece3d6;
+      --escuro: #cfc3b5;
+      --tinta: #111;
+      --fonte: "Bodoni Moda", "Playfair Display", Georgia, serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--fonte);
+      color: var(--tinta);
+      background: var(--claro);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 1px solid var(--tinta); outline-offset: 4px; }
+
+    .estrela { width: 22px; height: 22px; fill: var(--tinta); flex: none; }
+    .estrela.p { width: 12px; height: 12px; }
+
+    .rotulo {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+    }
+
+    /* ================= TELA INICIAL ================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem;
+      overflow: hidden;
+      background-color: var(--escuro);
+      background-image:
+        linear-gradient(115deg,
+          rgba(207,195,181,1) 0%,
+          rgba(236,227,214,.55) 22%,
+          rgba(207,195,181,.2) 38%,
+          rgba(236,227,214,.7) 55%,
+          rgba(207,195,181,.5) 72%,
+          rgba(236,227,214,.9) 100%);
+    }
+
+    .topo-esq, .topo-dir {
+      position: absolute;
+      top: 2.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .topo-esq { left: 6.5rem; }
+    .topo-dir { right: 2.6rem; }
+    .topo-esq .traco { width: 72px; height: 1px; background: var(--tinta); }
+
+    /* faixas laterais */
+    .lateral {
+      position: absolute;
+      top: 3rem;
+      bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .lateral.esq { left: 2.2rem; }
+    .lateral.dir { right: 2.2rem; }
+    .lateral .linha { width: 1px; background: var(--tinta); flex: 1; min-height: 20px; }
+    .lateral .linha.curta { flex: none; height: 40px; }
+    .lateral .texto {
+      writing-mode: vertical-rl;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .lateral.esq .texto { transform: rotate(180deg); }
+
+    /* centro */
+    .centro { position: relative; z-index: 1; width: 100%; }
+
+    .logo {
+      display: block;
+      margin: 0 auto;
+      max-width: min(640px, 80vw);
+      height: auto;
+    }
+    .logo-texto {
+      display: inline-block;
+      font-weight: 500;
+      font-size: clamp(3.2rem, 11vw, 8.5rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .em-breve {
+      margin-top: clamp(1.5rem, 4vw, 3rem);
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 400;
+    }
+
+    .divisor {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.6rem auto 1.4rem;
+      max-width: 380px;
+    }
+    .divisor::before, .divisor::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--tinta);
+    }
+
+    .chamada { font-size: clamp(0.6rem, 1.4vw, 0.72rem); letter-spacing: 0.45em; }
+
+    /* botão de rolar */
+    .rolar {
+      position: absolute;
+      bottom: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 54px;
+      border: 1px solid var(--tinta);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rolar svg { width: 14px; height: 24px; stroke: var(--tinta); fill: none; stroke-width: 1.2; }
+
+    .base-esq {
+      position: absolute;
+      left: 2.2rem;
+      bottom: 2.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .base-esq i { display: block; height: 1px; background: var(--tinta); }
+    .base-esq i:nth-child(1) { width: 38px; }
+    .base-esq i:nth-child(2) { width: 30px; }
+    .base-esq i:nth-child(3) { width: 44px; }
+
+    .base-dir {
+      position: absolute;
+      right: 2.6rem;
+      bottom: 2.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .base-dir .traco { width: 90px; height: 1px; background: var(--tinta); margin-left: 0.6rem; }
+
+    /* ================= CONTEÚDO ================= */
+    section { padding: clamp(4rem, 9vw, 7rem) 2rem; text-align: center; }
+    .miolo { max-width: 960px; margin: 0 auto; }
+
+    h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 400; margin-bottom: 1.6rem; }
+
+    .texto-corrido {
+      max-width: 56ch;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .frase {
+      font-style: italic;
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: 2.4rem;
+    }
+
+    .ornamento { display: flex; justify-content: center; margin-bottom: 2rem; }
+
+    .colunas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 3.5rem;
+    }
+    .coluna { padding: 0 1.8rem; }
+    .coluna + .coluna { border-left: 1px solid rgba(17,17,17,.35); }
+    .coluna h3 { font-size: 1.25rem; font-weight: 400; margin-bottom: 0.8rem; }
+    .coluna p { font-size: 1rem; line-height: 1.7; }
+
+    .escuro { background: var(--escuro); }
+
+    .contatos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem 3rem;
+      margin-top: 2.4rem;
+    }
+    .contatos a {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #1a4fd6;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+    .contatos a:visited { color: #1a4fd6; }
+    .contatos a:hover { color: #0f3399; }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    /* ================= CELULAR ================= */
+    @media (max-width: 760px) {
+      .lateral, .base-esq, .base-dir { display: none; }
+      .topo-esq { left: 1.5rem; top: 1.6rem; }
+      .topo-dir { right: 1.5rem; top: 1.6rem; }
+      .topo-esq .traco { width: 30px; }
+      .colunas { grid-template-columns: 1fr; gap: 2.5rem; }
+      .coluna { padding: 0; }
+      .coluna + .coluna { border-left: 0; border-top: 1px solid rgba(17,17,17,.35); padding-top: 2.5rem; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .centro { animation: surgir 1.6s ease-out both; }
+      @keyframes surgir { from { opacity: 0; } to { opacity: 1; } }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+  <!-- estrela reutilizável -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="estrela" viewBox="0 0 24 24">
+      <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ TELA INICIAL ============ -->
+  <header class="hero">
+    <div class="topo-esq rotulo">Valenny <span class="traco"></span></div>
+    <div class="topo-dir rotulo">Em breve
+      <svg class="estrela"><use href="#estrela"/></svg>
+    </div>
+
+    <aside class="lateral esq" aria-hidden="true">
+      <span class="linha"></span>
+      <svg class="estrela"><use href="#estrela"/></svg>
+      <span class="linha curta"></span>
+      <span class="texto">Elegância · Autenticidade · Você</span>
+      <span class="linha"></span>
+    </aside>
+
+    <aside class="lateral dir" aria-hidden="true">
+      <span class="linha"></span>
+      <svg class="estrela"><use href="#estrela"/></svg>
+      <span class="linha curta"></span>
+      <span class="texto">Qualidade · Estilo · Valenny</span>
+      <span class="linha"></span>
+    </aside>
+
+    <div class="centro">
+      <h1>
+        <!-- Quando tiver a imagem da logo: apague a linha <span> e
+             tire o comentário da linha <img> (salve como logo.png
+             na mesma pasta do index.html). -->
+        <span class="logo-texto">VALENNY</span>
+        <!-- <img class="logo" src="logo.png" alt="Valenny"> -->
+      </h1>
+
+      <p class="em-breve">Em Breve...</p>
+
+      <div class="divisor"><svg class="estrela"><use href="#estrela"/></svg></div>
+
+      <p class="chamada rotulo">Um novo capítulo está sendo preparado</p>
+    </div>
+
+    <a class="rolar" href="#sobre" aria-label="Rolar para baixo">
+      <svg viewBox="0 0 14 24"><path d="M7 2v19M2 16l5 5 5-5"/></svg>
+    </a>
+
+    <div class="base-esq" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="base-dir" aria-hidden="true">
+      <svg class="estrela p"><use href="#estrela"/></svg>
+      <svg class="estrela p"><use href="#estrela"/></svg>
+      <svg class="estrela p"><use href="#estrela"/></svg>
+      <span class="traco"></span>
+    </div>
+  </header>
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre">
+    <div class="miolo">
+      <div class="ornamento"><svg class="estrela"><use href="#estrela"/></svg></div>
+      <p class="frase">Não seja refém do tempo.</p>
+      <h2>Sobre a Valenny</h2>
+      <p class="texto-corrido">
+        A Valenny é uma marca de roupas feita para quem gosta de se vestir com
+        elegância e personalidade. Estamos preparando nossa primeira coleção e
+        nosso site, com peças pensadas para o seu dia a dia e para os momentos
+        especiais.
+      </p>
+
+      <div class="colunas">
+        <div class="coluna">
+          <h3>Peças selecionadas</h3>
+          <p>Modelos escolhidos com cuidado, do casual ao sofisticado.</p>
+        </div>
+        <div class="coluna">
+          <h3>Qualidade</h3>
+          <p>Tecidos e acabamentos que duram, com conforto em cada detalhe.</p>
+        </div>
+        <div class="coluna">
+          <h3>Estilo próprio</h3>
+          <p>Looks que valorizam quem você é, sem seguir modinhas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="escuro">
+    <div class="miolo">
+      <h2>Fique por dentro</h2>
+      <p class="texto-corrido">
+        Acompanhe a Valenny e saiba em primeira mão quando a loja abrir.
+      </p>
+      <div class="contatos">
+        <a href="https://www.instagram.com/_.valenny._/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/5511951194106" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:valenny.contato@gmail.com">E-mail</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Valenny · Todos os direitos reservados</footer>
+
+</body>
+</html>
